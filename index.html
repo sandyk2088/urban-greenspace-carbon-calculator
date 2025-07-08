@@ -192,10 +192,56 @@
       h1 { font-size: 1.3em; }
       h2 { font-size: 1.07em; }
     }
+    .source-note {
+      background: #fff3e0;
+      color: #8d6e63;
+      border-left: 5px solid #ffa726;
+      border-radius: 6px;
+      margin: 1.5em 0 1.7em 0;
+      padding: 1em 1.3em;
+      font-size: 1.04em;
+      box-shadow: 0 2px 8px #ffcc801a;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7em;
+    }
+    .source-note .material-icons {
+      font-size: 1.55em;
+      color: #ff9800;
+      margin-top: 0.1em;
+    }
+    .source-links {
+      margin-top: 0.4em;
+      font-size: 0.98em;
+    }
+    .source-links a {
+      color: #00796b;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .source-links a:hover {
+      color: #e65100;
+      text-decoration: underline wavy;
+    }
   </style>
 </head>
 <body>
   <h1><span class="icon" style="color:#26a69a;">eco</span>Urban Green Space Carbon Calculator</h1>
+
+  <div class="source-note">
+    <span class="material-icons">info</span>
+    <div>
+      <b>Data Source Tips:</b>
+      <ul style="margin:0 0 0 1.2em; padding-left:0;">
+        <li>Tree carbon <b>sequestered</b> and <b>stored</b> values can be obtained from <a href="https://mytree.itreetools.org/#/" target="_blank">i-Tree MyTree</a>.</li>
+        <li>Soil carbon <b>stored</b> values can be obtained from <a href="http://54.229.242.119/GSOCmap/" target="_blank">GSOCmap</a>.</li>
+      </ul>
+      <div class="source-links">
+        i-Tree MyTree: <a href="https://mytree.itreetools.org/#/" target="_blank">https://mytree.itreetools.org/#/</a><br>
+        GSOCmap: <a href="http://54.229.242.119/GSOCmap/" target="_blank">http://54.229.242.119/GSOCmap/</a>
+      </div>
+    </div>
+  </div>
 
   <form id="carbonForm">
     <!-- Tree Section -->
