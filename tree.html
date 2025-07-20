@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tree Carbon Storage & Sequestration - Urban Greenspace Carbon Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <h1><span class="icon material-icons">forest</span>Urban Greenspace Carbon Calculator</h1>
+  <form id="treeForm" class="section">
+    <h2>Tree Carbon Storage & Sequestration</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tree Species</th>
+          <th>Tree Count</th>
+          <th>Circumference (inches)</th>
+          <th>C Sequestered<br>(lbs/tree/yr)</th>
+          <th>C Stored<br>(lbs/tree)</th>
+        </tr>
+      </thead>
+      <tbody id="treeRows">
+        <!-- Rows will be dynamically generated from field measurements -->
+      </tbody>
+    </table>
+    <div class="note">
+      <b>Note:</b> Enter per-tree values in <b>pounds</b> (lbs). Results will be calculated in kg, t, and CO₂e.
+    </div>
+    <!-- Totals for all trees will appear here -->
+    <div id="treeTotals" class="note"></div>
+    <button type="submit" class="btn">Next: Soil Measurements</button>
+  </form>
+  <button onclick="window.location.href='field.html'" class="btn secondary">Back</button>
+</body>
+</html>
