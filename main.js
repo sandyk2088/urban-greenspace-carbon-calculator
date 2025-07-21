@@ -264,10 +264,11 @@ if (soilForm) {
     // For calculation, try to get a representative value from the range (if any)
     let organicMatterPercent = null;
     if (somEstimate && somEstimate.match(/(\d+(\.\d+)?)/)) {
-      // If somEstimate includes e.g. "0.6-1.0%", take the mean
+      // If somEstimate includes e.g. "0.6-1.0%" or "4-8%", take the mean
       const match = somEstimate.match(/(\d+(\.\d+)?)(-(\d+(\.\d+)?))?/);
       if (match) {
         if (match[4]) {
+          // Use the average of the range for calculations
           organicMatterPercent = (parseFloat(match[1]) + parseFloat(match[4])) / 2;
         } else {
           organicMatterPercent = parseFloat(match[1]);
