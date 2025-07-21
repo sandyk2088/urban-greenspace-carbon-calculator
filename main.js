@@ -420,7 +420,7 @@ if (resultDiv) {
   const soilChroma = soil.soilChroma || field.soilChroma || '';
   const soilStoredPerHa = soil.soilStored || 0;
   const soilAreaHa = soilAreaAcres * acresToHectares;
-  const totalSoilStored = soilAreaHa * soilStoredPerHa;
+  const totalSoilStored = socTonnesPerAcre * soilAreaAcres;
   const sequestrationRate = soilSequestrationRates[soilType] || soilSequestrationRates['Other'];
   const totalSoilSequestered = soilAreaHa * sequestrationRate;
   let soilOutput = `<h2>Soil Measurements Summary</h2>`;
@@ -428,9 +428,8 @@ if (resultDiv) {
   soilOutput += `<b>Green Space Area:</b> ${soilAreaAcres.toLocaleString(undefined, {maximumFractionDigits:2})} acres (${soilAreaHa.toLocaleString(undefined, {maximumFractionDigits:2})} ha)<br>`;
   soilOutput += `<b>Soil Moisture:</b> ${soilMoisture}<br>`;
   soilOutput += `<b>Munsell Soil Color:</b> Hue <b>${soilHue}</b>, Value <b>${soilValue}</b>, Chroma <b>${soilChroma}</b><br>`;
-  soilOutput += `<b>Soil Carbon Stored:</b> ${soilStoredPerHa.toLocaleString(undefined, {maximumFractionDigits:2})} t/ha<br>`;
+  soilOutput += `<b>Soil Carbon Stored:</b> ${socTonnesPerAcre.toLocaleString(undefined, {maximumFractionDigits:2})} t/ha<br>`;
   soilOutput += `<b>Total Soil Carbon Stored:</b> ${totalSoilStored.toLocaleString(undefined, {maximumFractionDigits:2})} t<br>`;
-  soilOutput += `<b>Total Soil Carbon Sequestered (annual estimate):</b> ${totalSoilSequestered.toLocaleString(undefined, {maximumFractionDigits:2})} t/year`;
 
   if (soil.soilOrganicMatter) {
     soilOutput += `<div class="note" style="margin-top:0.7em;">${soil.soilOrganicMatter}</div>`;
@@ -440,9 +439,10 @@ if (resultDiv) {
 
   // Totals and CO2 equivalents
   const totalCarbonStoredTon = totalTreeStoredKg * kgToTon + totalSoilStored;
-  const totalCarbonSequesteredTon = totalTreeSequesteredKg * kgToTon + totalSoilSequestered;
+  // Only include tree sequestration in the sequestered total
+  const totalCarbonSequesteredTon = totalTreeSequesteredKg * kgToTon; // removed + totalSoilSequestered
   const totalCO2StoredTon = totalCarbonStoredTon * cToCO2;
-  const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2;
+  const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2; // removed soil CO2 sequestered
 
   let summaryTable = `
     <h2>Combined Carbon Summary</h2>
