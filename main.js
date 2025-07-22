@@ -157,10 +157,13 @@ if (soilForm) {
     "Sandy loam": 1.50,
     "Loam": 1.45,
     "Silt loam": 1.20,
+    "Silt": 1.35, //Estimated
     "Sandy clay loam": 1.63,
-    "Silty clay": 1.55,
     "Clay loam": 1.45,
     "Silty clay loam": 1.40,
+    "Sandy clay": 1.60, //Estimated
+    "Silty clay": 1.55,
+    "Clay": 1.35, //Estimated
     "Red clayey soils": 1.10,
     "Soils that formed in volcanic ash": 0.80,
     "Organic matter": 0.22
@@ -219,28 +222,28 @@ if (soilForm) {
     // SOM lookup table (as previously defined)
     const SOM_TABLE = [
       // Moist
-      { moisture: "Moist", value: 7, S: "<0.3", LS_SL_L: "", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "" },
-      { moisture: "Moist", value: 6.5, S: "0.3-0.6", LS_SL_L: "", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "" },
-      { moisture: "Moist", value: 6, S: "0.6-1", LS_SL_L: "", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "" },
-      { moisture: "Moist", value: 5.5, S: "1-1.5", LS_SL_L: "", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "" },
-      { moisture: "Moist", value: 5, S: "<0.3", LS_SL_L: "<0.4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "<0.3" },
-      { moisture: "Moist", value: 4.5, S: "0.3-0.6", LS_SL_L: "0.4-0.6", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.3-0.6" },
-      { moisture: "Moist", value: 4, S: "0.6-1.0", LS_SL_L: "0.6-1.0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.6-1.5" },
-      { moisture: "Moist", value: 3.5, S: "0.9-1.5", LS_SL_L: "1-2", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "1-5" },
-      { moisture: "Moist", value: 3, S: "1.5-3", LS_SL_L: "2-4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "4-8" },
-      { moisture: "Moist", value: 2.5, S: ">3", LS_SL_L: ">4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">8" },
-      { moisture: "Moist", value: 2, S: ">6", LS_SL_L: ">6", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">12" },
+      { moisture: "Moist", value: 7, S: "0", LS_SL_L: "0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0" },
+      { moisture: "Moist", value: 6.5, S: "0", LS_SL_L: "0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0" },
+      { moisture: "Moist", value: 6, S: "0", LS_SL_L: "0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0" },
+      { moisture: "Moist", value: 5.5, S: "0", LS_SL_L: "0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "<0.3" },
+      { moisture: "Moist", value: 5, S: "<0.3", LS_SL_L: "<0.4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.3-0.6" },
+      { moisture: "Moist", value: 4.5, S: "0.3-0.6", LS_SL_L: "0.4-0.6", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.6-0.9" },
+      { moisture: "Moist", value: 4, S: "0.6-0.9", LS_SL_L: "0.6-1.0", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.9-1.5" },
+      { moisture: "Moist", value: 3.5, S: "0.9-1.5", LS_SL_L: "1-2", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "1.5-3" },
+      { moisture: "Moist", value: 3, S: "1.5-3", LS_SL_L: "2-4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "3-5" },
+      { moisture: "Moist", value: 2.5, S: "3-6", LS_SL_L: ">4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">5" },
+      { moisture: "Moist", value: 2, S: ">6", LS_SL_L: ">4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">5" },
       // Dry
       { moisture: "Dry", value: 7, S: "<0.3", LS_SL_L: "<0.5", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "<0.6" },
       { moisture: "Dry", value: 6.5, S: "0.3-0.6", LS_SL_L: "0.5-0.8", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "0.6-1.2" },
       { moisture: "Dry", value: 6, S: "0.6-1", LS_SL_L: "0.8-1.2", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "1.2-2" },
-      { moisture: "Dry", value: 5.5, S: "1-1.5", LS_SL_L: "1.2-2", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "2-4" },
+      { moisture: "Dry", value: 5.5, S: "1-1.5", LS_SL_L: "1.2-2", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "2-3" },
       { moisture: "Dry", value: 5, S: "1.5-2", LS_SL_L: "2-4", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "3-4" },
       { moisture: "Dry", value: 4.5, S: "2-3", LS_SL_L: "4-6", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "4-6" },
       { moisture: "Dry", value: 4, S: "3-5", LS_SL_L: "6-9", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "6-9" },
       { moisture: "Dry", value: 3.5, S: "5-8", LS_SL_L: "9-15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: "9-15" },
-      { moisture: "Dry", value: 3, S: ">8", LS_SL_L: ">15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">15" },
-      { moisture: "Dry", value: 2.5, S: ">8", LS_SL_L: ">15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">15" },
+      { moisture: "Dry", value: 3, S: "8-12", LS_SL_L: ">15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">15" },
+      { moisture: "Dry", value: 2.5, S: ">12", LS_SL_L: ">15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">15" },
       { moisture: "Dry", value: 2, S: ">12", LS_SL_L: ">15", SiL_Si_SiCL_CL_SCL_SC_SiC_C: ">15" }
     ];
     function estimateSOM(moisture, value, chroma, soilType) {
@@ -374,21 +377,21 @@ if (resultDiv) {
   const cToCO2 = 44/12;
 
   // Soil sequestration rates (tC/ha/yr)
-  const soilSequestrationRates = {
-    'Sand': 0.18,
-    'Loamy Sand': 0.22,
-    'Sandy Loam': 0.24,
-    'Loam': 0.4,
-    'Silt Loam': 0.34,
-    'Silt': 0.3,
-    'Sandy Clay Loam': 0.28,
-    'Clay Loam': 0.35,
-    'Silty Clay Loam': 0.32,
-    'Sandy Clay': 0.26,
-    'Silty Clay': 0.32,
-    'Clay': 0.3,
-    'Other': 0.25
-  };
+  // const soilSequestrationRates = {
+  //   'Sand': 0.18,
+  //   'Loamy Sand': 0.22,
+  //   'Sandy Loam': 0.24,
+  //   'Loam': 0.4,
+  //   'Silt Loam': 0.34,
+  //   'Silt': 0.3,
+  //   'Sandy Clay Loam': 0.28,
+  //   'Clay Loam': 0.35,
+  //   'Silty Clay Loam': 0.32,
+  //   'Sandy Clay': 0.26,
+  //   'Silty Clay': 0.32,
+  //   'Clay': 0.3,
+  //   'Other': 0.25
+  // };
 
   const field = loadData(FIELD_KEY, {});
   const trees = loadData(TREES_KEY, []);
@@ -422,8 +425,8 @@ if (resultDiv) {
   const soilStoredPerHa = soil.soilStored || 0;
   const soilAreaHa = soilAreaAcres * acresToHectares;
   const totalSoilStored = socTonnesPerAcre * soilAreaAcres;
-  const sequestrationRate = soilSequestrationRates[soilType] || soilSequestrationRates['Other'];
-  const totalSoilSequestered = soilAreaHa * sequestrationRate;
+  //const sequestrationRate = soilSequestrationRates[soilType] || soilSequestrationRates['Other'];
+  //const totalSoilSequestered = soilAreaHa * sequestrationRate;
   let soilOutput = `<h2>Soil Measurements Summary</h2>`;
   soilOutput += `<b>Soil Texture Type:</b> ${soilType}<br>`;
   soilOutput += `<b>Green Space Area:</b> ${soilAreaAcres.toLocaleString(undefined, {maximumFractionDigits:2})} acres (${soilAreaHa.toLocaleString(undefined, {maximumFractionDigits:2})} ha)<br>`;
@@ -443,7 +446,7 @@ if (resultDiv) {
   // Only include tree sequestration in the sequestered total
   const totalCarbonSequesteredTon = totalTreeSequesteredKg * kgToTon; // removed + totalSoilSequestered
   const totalCO2StoredTon = totalCarbonStoredTon * cToCO2;
-  const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2; // removed soil CO2 sequestered
+  //const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2; // removed soil CO2 sequestered
 
   let summaryTable = `
     <h2>Combined Carbon Summary</h2>
