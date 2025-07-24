@@ -269,11 +269,11 @@ if (soilForm) {
     if (somEstimate) {
       // Match numbers, ranges, <, >
       // Examples: '2-4', '<0.3', '>4', '3'
-      const rangeMatch = somEstimate.match(/(\d+(\.\d+)?)-(\d+(\.\d+)?)/);
-      const singleMatch = somEstimate.match(/([<>]?)(\d+(\.\d+)?)/);
+      const rangeMatch = somEstimate.match(/([<>]?)(\d+(\.\d+)?)[ ]*-[ ]*([<>]?)(\d+(\.\d+)?)[ ]*%?/);
+      const singleMatch = somEstimate.match(/([<>]?)(\d+(\.\d+)?)[ ]*%?/);
       if (rangeMatch) {
         // Use average of range
-        organicMatterPercent = (parseFloat(rangeMatch[1]) + parseFloat(rangeMatch[3])) / 2;
+        organicMatterPercent = (parseFloat(rangeMatch[2]) + parseFloat(rangeMatch[5])) / 2;
       } else if (singleMatch) {
         // Use the numeric part, even if < or >
         organicMatterPercent = parseFloat(singleMatch[2]);
@@ -285,11 +285,11 @@ if (soilForm) {
     let bulkDensity = null;
     if (organicMatterPercent !== null) {
       bulkDensity = estimateBulkDensity(soilType, organicMatterPercent);
-      if (bulkDensity) {
-        bulkDensityStr = `<b>Estimated Bulk Density:</b> ${bulkDensity.toFixed(2)} g/cm³ 
+      //if (bulkDensity) {
+        bulkDensityStr = `<b>Estimated Bulk Density:</b> ${bulkDensity.toFixed(2)} g/cm³ with ${organicMatterPercent}% organic matter
           <br><small>Calculated using average bulk density for ${soilType} and organic matter from Rawls (1983), 
           and organic matter percentage estimated from Munsell soil colour.</small>`;
-      }
+      //}
     }
 
     // Calculate soil organic matter (lbs/ac-depth) using image3 equation
@@ -411,7 +411,7 @@ if (resultDiv) {
   });
   treeOutput += `</ul>`;
   treeOutput += `<b>Total Carbon Sequestered by Trees:</b> ${totalTreeSequesteredKg.toLocaleString(undefined, {maximumFractionDigits:2})} kg/year (${(totalTreeSequesteredKg*kgToTon).toLocaleString(undefined, {maximumFractionDigits:3})} t/year)<br>`;
-  treeOutput += `<b>Total Carbon Stored in Trees:</b> ${totalTreeStoredKg.toLocaleString(undefined, {maximumFractionDigits:2})} kg (${(totalTreeStoredKg*kgToTon).toLocaleString(undefined, {maximumFractionDigits:3})} t)`;
+  treeOutput += `<b>Total Carbon Stored in all Trees:</b> ${totalTreeStoredKg.toLocaleString(undefined, {maximumFractionDigits:2})} kg (${(totalTreeStoredKg*kgToTon).toLocaleString(undefined, {maximumFractionDigits:3})} t)`;
 
   if (treeSummaryDiv) treeSummaryDiv.innerHTML = treeOutput;
 
@@ -422,31 +422,31 @@ if (resultDiv) {
   const soilHue = soil.soilHue || field.soilHue || '';
   const soilValue = soil.soilValue || field.soilValue || '';
   const soilChroma = soil.soilChroma || field.soilChroma || '';
-  const soilStoredPerHa = soil.soilStored || 0;
-  const soilAreaHa = soilAreaAcres * acresToHectares;
+  // const soilStoredPerHa = soil.soilStored || 0;
+  // const soilAreaHa = soilAreaAcres * acresToHectares;
+  const socTonnesPerAcre = soil.socTonnesPerAcre;
   const totalSoilStored = socTonnesPerAcre * soilAreaAcres;
   //const sequestrationRate = soilSequestrationRates[soilType] || soilSequestrationRates['Other'];
   //const totalSoilSequestered = soilAreaHa * sequestrationRate;
   let soilOutput = `<h2>Soil Measurements Summary</h2>`;
   soilOutput += `<b>Soil Texture Type:</b> ${soilType}<br>`;
-  soilOutput += `<b>Green Space Area:</b> ${soilAreaAcres.toLocaleString(undefined, {maximumFractionDigits:2})} acres (${soilAreaHa.toLocaleString(undefined, {maximumFractionDigits:2})} ha)<br>`;
+  soilOutput += `<b>Green Space Area:</b> ${soilAreaAcres.toLocaleString(undefined, {maximumFractionDigits:2})} acres<br>`;
   soilOutput += `<b>Soil Moisture:</b> ${soilMoisture}<br>`;
   soilOutput += `<b>Munsell Soil Color:</b> Hue <b>${soilHue}</b>, Value <b>${soilValue}</b>, Chroma <b>${soilChroma}</b><br>`;
-  soilOutput += `<b>Soil Carbon Stored:</b> ${socTonnesPerAcre.toLocaleString(undefined, {maximumFractionDigits:2})} t/ha<br>`;
+  soilOutput += `<b>Soil Carbon Stored:</b> ${socTonnesPerAcre.toLocaleString(undefined, {maximumFractionDigits:2})} t/acre<br>`;
   soilOutput += `<b>Total Soil Carbon Stored:</b> ${totalSoilStored.toLocaleString(undefined, {maximumFractionDigits:2})} t<br>`;
 
-  if (soil.soilOrganicMatter) {
-    soilOutput += `<div class="note" style="margin-top:0.7em;">${soil.soilOrganicMatter}</div>`;
-  }
+  // if (soil.soilOrganicMatter) {
+  //   soilOutput += `<div class="note" style="margin-top:0.7em;">${soil.soilOrganicMatter}</div>`;
+  // }
 
   if (soilSummaryDiv) soilSummaryDiv.innerHTML = soilOutput;
-
   // Totals and CO2 equivalents
   const totalCarbonStoredTon = totalTreeStoredKg * kgToTon + totalSoilStored;
   // Only include tree sequestration in the sequestered total
   const totalCarbonSequesteredTon = totalTreeSequesteredKg * kgToTon; // removed + totalSoilSequestered
   const totalCO2StoredTon = totalCarbonStoredTon * cToCO2;
-  //const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2; // removed soil CO2 sequestered
+  const totalCO2SequesteredTon = totalCarbonSequesteredTon * cToCO2; // removed soil CO2 sequestered
 
   let summaryTable = `
     <h2>Combined Carbon Summary</h2>
@@ -457,12 +457,12 @@ if (resultDiv) {
         <th>CO₂ Equivalent (t)</th>
       </tr>
       <tr>
-        <td><b>Total Stored</b></td>
+        <td><b>Total Stored (Trees + Soil)</b></td>
         <td>${totalCarbonStoredTon.toLocaleString(undefined, {maximumFractionDigits:3})}</td>
         <td>${totalCO2StoredTon.toLocaleString(undefined, {maximumFractionDigits:3})}</td>
       </tr>
       <tr>
-        <td><b>Total Sequestered / yr</b></td>
+        <td><b>Total Sequestered (by trees) / yr</b></td>
         <td>${totalCarbonSequesteredTon.toLocaleString(undefined, {maximumFractionDigits:3})}</td>
         <td>${totalCO2SequesteredTon.toLocaleString(undefined, {maximumFractionDigits:3})}</td>
       </tr>
