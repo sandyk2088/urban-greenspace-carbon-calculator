@@ -12,6 +12,16 @@
   <h1><span class="icon material-icons">forest</span>Urban Greenspace Carbon Calculator</h1>
   <form id="treeForm" class="section">
     <h2>Tree Carbon Storage & Sequestration</h2>
+    <div class="note" style="margin-bottom:1em;">
+      <span class="icon material-icons" style="vertical-align:middle;">info</span>
+      To obtain the <strong>CO<sub>2</sub> stored</strong> and <strong>CO<sub>2</sub> sequestered</strong> in lbs for each tree you identify, please visit the 
+      <a href="https://mytree.itreetools.org/#/" target="_blank">i-Tree MyTree tool</a>. 
+      After identifying your tree species and entering the tree diameter, find the values for <strong>Carbon Stored</strong> (lbs) and <strong>Carbon Sequestered</strong> (lbs) for <strong>this year/now</strong> in the MyTree Benefits panel (see example below).
+    </div>
+    <div style="text-align:center;">
+      <img src="MyTree_screenshot.png" alt="Reference MyTree Benefits panel showing carbon values" style="max-width:340px; width:100%; border:1px solid #b2dfdb; border-radius:6px;">
+      <div style="font-size:0.92em; color:#607d8b; margin-top:0.3em;">Example MyTree output for reference (be sure to use values for 'this year/now')</div>
+    </div>
     <table>
       <thead>
         <tr>
@@ -26,9 +36,9 @@
         <!-- Rows will be dynamically generated from field measurements -->
       </tbody>
     </table>
-    <div class="note">
+    <!-- <div class="note">
       <b>Note:</b> Enter per-tree values in <b>pounds</b> (lbs). Results will be calculated in kg, t, and CO₂e.
-    </div>
+    </div> -->
     <!-- Totals for all trees will appear here -->
     <div id="treeTotals" class="note"></div>
     <button type="submit" class="btn">Next: Soil Measurements</button>
