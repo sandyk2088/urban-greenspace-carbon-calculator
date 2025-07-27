@@ -256,8 +256,9 @@ if (soilForm) {
       const texGroup = getTextureGroup(soilType);
       const somRange = closest[texGroup] || "";
       if (somRange) {
-        return `Estimated Soil Organic Matter: <b>${somRange}%</b> 
-          (for ${moisture.toLowerCase()} soil, ${soilType}, Munsell value ${value}${chroma ? ", chroma " + chroma : ""})`;
+        return `Estimated Soil Organic Matter (percentage): <b>${somRange}%</b> 
+          (for ${moisture.toLowerCase()} soil, ${soilType}, Munsell value ${value}${chroma ? ", chroma " + chroma : ""})
+          <br><small>Calculated using estimates from Table 46 of <a href="https://library.wur.nl/WebQuery/wurpubs/355777" target="_blank"> Jahn, R., et al. Guidelines for soil description. Fao, 2006 </a>.</small>`;
       } else {
         return `No organic matter range found for these parameters.`;
       }
@@ -300,7 +301,7 @@ if (soilForm) {
       const sampleDepthCm = field.sampleDepthCm || 30;
       somLbsAcDepth = calculateSoilOrganicMatter(organicMatterPercent, bulkDensity, sampleDepthCm);
       somLbsAcDepthStr = `<b>Estimated Soil Organic Matter (SOM):</b> ${somLbsAcDepth.toLocaleString(undefined, {maximumFractionDigits:0})} lbs/ac-depth 
-        <br><small>Calculated using equation: (OM% x 10,000) × bulk density × (sample depth [cm] ÷ 10) × 0.893 (see image3).</small>`;
+        <br><small>Calculated using equation: (OM% x 10,000) × bulk density × (sample depth [cm] ÷ 10) × 0.893 from <a href="https://www.nrcs.usda.gov/sites/default/files/2022-10/Soil%20Organic%20Matter.pdf" target="_blank"> Guides for Educators (May 2014) Soil organic matter (SOM), NRCS USDA </a>.</small>`;
     }
 
     // Calculate soil organic carbon (SOC) in lbs/ac-depth and tonnes/acre for the plot
