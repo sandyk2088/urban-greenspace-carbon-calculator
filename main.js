@@ -153,16 +153,16 @@ if (soilForm) {
   // Bulk density table from image1
   const bulkDensityTable = {
     "Sand": 1.56,
-    "Loamy sand": 1.54,
-    "Sandy loam": 1.50,
+    "Loamy Sand": 1.54,
+    "Sandy Loam": 1.50,
     "Loam": 1.45,
-    "Silt loam": 1.20,
+    "Silt Loam": 1.20,
     "Silt": 1.35, //Estimated
-    "Sandy clay loam": 1.63,
-    "Clay loam": 1.45,
-    "Silty clay loam": 1.40,
-    "Sandy clay": 1.60, //Estimated
-    "Silty clay": 1.55,
+    "Sandy clay Loam": 1.63,
+    "Clay Loam": 1.45,
+    "Silty Clay Loam": 1.40,
+    "Sandy Clay": 1.60, //Estimated
+    "Silty Clay": 1.55,
     "Clay": 1.35, //Estimated
     "Red clayey soils": 1.10,
     "Soils that formed in volcanic ash": 0.80,
