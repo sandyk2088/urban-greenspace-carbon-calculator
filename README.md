@@ -9,6 +9,9 @@ This innovative calculator brings urban nature into the spotlight by estimating 
 🔗 **Try the calculator now**:  
 [urban-greenspace-carbon-calculator](https://sandyk2088.github.io/urban-greenspace-carbon-calculator/)
 
+## 📃Report
+[Detailed methodology and Case Study](https://github.com/sandyk2088/urban-greenspace-carbon-calculator/blob/main/Report%20and%20Case%20Study.pdf)
+
 ## 📌 Features
 - Calculates carbon storage based on tree species and canopy cover
 - Estimates soil carbon using bulk density and organic matter
