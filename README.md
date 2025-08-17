@@ -4,7 +4,7 @@ A web-based tool for estimating **carbon storage** and **annual sequestration** 
 
 Many carbon footprint calculators focus on trimming down emissions from our daily lives, but have you ever wondered what role your favorite city park or leafy avenue plays in the fight against climate change? 
 
-This innovative calculator brings urban nature into the spotlight by estimating the carbon captured and stored in greenspaces, using data gathered through smartphone apps, images, and simple measurements. Perfect for citizen science projects, it empowers volunteers and students to map green spots in their neighborhoods. Dive into the sections below to explore the calculator’s unique features, methodology, real-world applications, and a compelling case study showing it in action!
+This innovative calculator brings urban nature into the spotlight by estimating the carbon captured and stored in greenspaces, using data gathered through smartphone apps, images, and simple measurements. Perfect for citizen science projects, it empowers volunteers and students to map green spots in their neighborhoods. Try the calculator or dive into the report below to explore the calculator’s unique features, methodology, real-world applications, and a compelling case study showing it in action!
 
 🔗 **Try the calculator now**:  
 [urban-greenspace-carbon-calculator](https://sandyk2088.github.io/urban-greenspace-carbon-calculator/)
