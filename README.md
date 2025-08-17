@@ -13,14 +13,9 @@ This innovative calculator brings urban nature into the spotlight by estimating 
 [Detailed methodology and Case Study](https://github.com/sandyk2088/urban-greenspace-carbon-calculator/blob/main/Report%20and%20Case%20Study.pdf)
 
 ## 📌 Features
-- Calculates carbon storage based on tree species and canopy cover
-- Estimates soil carbon using bulk density and organic matter
-- Supports urban soil types
+- Calculates tree carbon stored and sequestered based on tree species, count and data from [i-Tree MyTree tool](https://mytree.itreetools.org/#/)
+- Estimates soil carbon using bulk density and organic matter based on soil texture, Munsell soil color and soil moisture
 - Provides summary of results for reporting and analysis
-
-## 🧪 Methodology
-This calculator uses species-specific biomass equations and empirical soil models to estimate carbon fluxes. It’s designed for urban planners, ecologists, and sustainability advocates seeking data-driven insights into greenspace contributions to climate mitigation.
-
 
 ## 🤝 Contributing
 Pull requests are welcome! If you have ideas for new features, improved models, or expanded species support, feel free to open an issue or submit a PR.
